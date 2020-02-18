@@ -1,8 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   def index
-    @current_user = current_user
-    @bookings = Booking.where("user_id = #{current_user.id}")
+    @bookings = Booking.all
   end
 
   def show
@@ -15,7 +14,7 @@ class BookingsController < ApplicationController
     @booking.user = @current_user
     @booking.place = @place
     if @booking.save
-      redirect_to user_bookings(@current_user)
+      redirect_to user_bookings_path(@current_user)
     else
       render 'places/show'
     end
