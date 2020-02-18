@@ -10,3 +10,17 @@
 .navbar-lewagon .navbar-brand img {
   width: 100px;
 }
+
+.search {
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 38px;
+    width: 300px;
+    background-color: #f1f3f5;
+    margin-right: auto;
+}
+
+.search:hover {
+   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
