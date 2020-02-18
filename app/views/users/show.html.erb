@@ -55,7 +55,7 @@
         <tbody>
             <% @current_user.places.each do |place| %>
               <tr>
-                <td><%= place.title %></td>
+                <td><%= link_to place.title, place_path(place) %></td>
                 <td><%= place.address %></td>
                 <td><%= place.bookings.count %></td>
                 <td>
