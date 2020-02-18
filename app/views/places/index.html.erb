@@ -1,0 +1,21 @@
+<div class="placescontainer">
+
+  <div class="places-cards">
+    <% @places.each do |place| %>
+    <div class="places-card">
+      <img class="img-places-card" src="https://images.unsplash.com/photo-1571512050766-0ff3b842dca0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" />
+      <div class="places-card-infos">
+        <div>
+          <h2><%= place.title %></h2>
+          <p><%= place.address %></p>
+        </div>
+        <div>
+          <h2><%= place.price %> €</h2>
+          <p><%= place.capacity %> x <i class="fas fa-user"></i></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+      <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg'>
+</div>
