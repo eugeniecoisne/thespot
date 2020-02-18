@@ -1,42 +1,71 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag "swimmingpool12.jpg", alt: "First slide", class: "d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "swimmingpool2.jpg", alt: "Second slide", class: "d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "swimmingpool10.jpg", alt: "Third slide", class: "d-block w-100" %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-<%= image_tag "https://images.unsplash.com/photo-1550948390-6eb7fa773072?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80", height: '350px' %>
-
-<div class="container margin-top-negative">
+<div class="container mt-3">
   <div class="row">
-    <div class="col-8">
-      <div class="flat-show-card">
-        <h1><%= @place.title %></h1>
-        <p class="flat-show-address"><%= @place.address %></p>
+    <div class="col-12">
+      <div class="card show-card text-center">
+        <h1 class="show-card-title"><%= @place.title %></h1>
+        <p class="show-address"><%= @place.address %></p>
       </div>
-      <div class="flat-show-card">
-        <h3>More informations about the place...</h3>
-        <p><%= @place.description %></p>
+    </div>
+    <div class="col-8">
+      <div class="card show-card">
+        <h3 class="show-card-title">More informations about the place...</h3>
+        <p class="show-card-text"><%= @place.description %></p>
         <%= image_tag "https://www.google.com/maps/about/images/mymaps/mymaps-desktop-16x9.png", height: '350px' %>
       </div>
     </div>
 
     <div class="col-4">
-      <div class="flat-show-card">
-        <h5>Book this place!</h5>
-        <%= simple_form_for([@place, @booking]) do |f| %>
-          <%= f.input :date, order: [:day, :month, :year] %>
-          <%= f.submit 'Book', class: 'btn btn-primary' %>
-        <% end %>
+      <div class="card show-card place-booking-card">
+        <h3 class="show-card-title">Book this place !</h3>
+        <div class="form-and-submit">
+          <%= simple_form_for([@place, @booking]) do |f| %>
+            <%= f.input :date, order: [:day, :month, :year], label: false %>
+            <%= f.submit 'Book', class: 'btn btn-light w-100' %>
+          <% end %>
+        </div>
       </div>
-      <div class="flat-show-card">
-        <h3>Details</h3>
-        <div class="flex">
-          <div class="flex">
-            <i class="fas fa-users"></i><span><%= @place.capacity %></span>
+      <div class="card show-card place-details-card">
+        <div class="details">
+          <div class="details-capacity">
+            <i class="fas fa-users pr-2"></i>
+            <span><%= @place.capacity %></span>
           </div>
-          <div class="flex ml-3">
-            <i class="fas fa-euro-sign"></i><span><%= @place.price %></span>
+          <div class="details-price">
+            <i class="fas fa-euro-sign pr-2"></i>
+            <span><%= @place.price %></span>
           </div>
         </div>
       </div>
-      <div class="flat-show-card">
+      <div class="card show-card place-share-card">
         <div class="flex-align">
-          <h6 class="no-mb">Share</h6>
+          <h6 class="show-card-title no-mb">Share this place</h6>
           <div class="flex">
             <i class="fab fa-facebook-square"></i>
             <i class="fab fa-twitter-square"></i>

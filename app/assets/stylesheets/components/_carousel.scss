@@ -1,0 +1,11 @@
+.carousel-inner {
+  display: flex;
+  align-items: flex-end;
+  height: 500px;
+}
+
+.carousel-item {
+  img {
+    object-fit: cover;
+  }
+}
