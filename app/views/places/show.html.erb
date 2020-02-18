@@ -1,1 +1,50 @@
-<h1>Places#show</h1>
+
+<%= image_tag "https://images.unsplash.com/photo-1550948390-6eb7fa773072?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80", height: '350px' %>
+
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8">
+      <div class="flat-show-card">
+        <h1><%= @place.title %></h1>
+        <p class="flat-show-address"><%= @place.address %></p>
+      </div>
+      <div class="flat-show-card">
+        <h3>More informations about the place...</h3>
+        <p><%= @place.description %></p>
+        <%= image_tag "https://www.google.com/maps/about/images/mymaps/mymaps-desktop-16x9.png", height: '350px' %>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="flat-show-card">
+        <h5>Book this place!</h5>
+        <%= simple_form_for([@place, @booking]) do |f| %>
+          <%= f.input :date, order: [:day, :month, :year] %>
+          <%= f.submit 'Book', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="flat-show-card">
+        <h3>Details</h3>
+        <div class="flex">
+          <div class="flex">
+            <i class="fas fa-users"></i><span><%= @place.capacity %></span>
+          </div>
+          <div class="flex ml-3">
+            <i class="fas fa-euro-sign"></i><span><%= @place.price %></span>
+          </div>
+        </div>
+      </div>
+      <div class="flat-show-card">
+        <div class="flex-align">
+          <h6 class="no-mb">Share</h6>
+          <div class="flex">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-twitter-square"></i>
+            <i class="fab fa-pinterest-square"></i>
+            <i class="fas fa-envelope-square"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
