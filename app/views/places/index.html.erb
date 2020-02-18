@@ -1,22 +1,24 @@
 <div class="placescontainer">
   <div class="places-cards">
     <% @places.each do |place| %>
-    <div class="places-card">
-      <% if place.photos.attached? %>
-      <div class="img-places-card" style="background-image: url('<%= cl_image_path place.photos.sample.key, width: 400, height: 300, crop: :fill %>')">
+      <%= link_to place_path(place) do %>
+      <div class="places-card">
+        <% if place.photos.attached? %>
+          <div class="img-places-card" style="background-image: url('<%= cl_image_path place.photos.sample.key %>')">
+          </div>
+        <% end %>
+        <div class="places-card-infos">
+          <div>
+            <h2><%= place.title %></h2>
+            <p><%= place.address %></p>
+          </div>
+          <div>
+            <h2><%= place.price %> €</h2>
+            <p><%= place.capacity %> x <i class="fas fa-user"></i></p>
+          </div>
+        </div>
+      </div>
       <% end %>
-      </div>
-      <div class="places-card-infos">
-        <div>
-          <h2><%= place.title %></h2>
-          <p><%= place.address %></p>
-        </div>
-        <div>
-          <h2><%= place.price %> €</h2>
-          <p><%= place.capacity %> x <i class="fas fa-user"></i></p>
-        </div>
-      </div>
-    </div>
     <% end %>
   </div>
       <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg'>
