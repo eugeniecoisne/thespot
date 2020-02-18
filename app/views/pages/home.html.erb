@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "terrace1" %>)">
+  <div class="container">
+    <h1>The spot <strong>help you</strong> to <strong>find best places</strong> !</h1>
+    <%= simple_form_for :filter, url: places_path, method: :get do |f| %>
+      <%= f.input :address, placeholder:"Search an adress...", label: false  %>
+      <%= f.input :category, placeholder:"Select a category...", label: false, collection: Place::CATEGORIES %>
+      <%= f.submit 'Search', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
