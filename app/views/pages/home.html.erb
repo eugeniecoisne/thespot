@@ -2,8 +2,8 @@
   <div class="container">
     <h1>The spot <strong>help you</strong> to <strong>find best places</strong> !</h1>
     <%= simple_form_for :filter, url: places_path, method: :get do |f| %>
-      <%= f.input :address, placeholder:"Search an adress...", label: false  %>
-      <%= f.input :category, placeholder:"Select a category...", label: false, collection: Place::CATEGORIES %>
+      <%= f.input :address, placeholder:"Search an adress...", label: false, input_html: { class: 'homepage' }  %>
+      <%= f.input :category, placeholder:"Select a category...", label: false, collection: Place::CATEGORIES, input_html: { class: 'homepage' } %>
       <%= f.submit 'Search', class: 'btn btn-success' %>
     <% end %>
   </div>
