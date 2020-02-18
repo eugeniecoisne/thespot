@@ -1,0 +1,54 @@
+.show-card {
+  margin: 1em;
+  border: none;
+  padding: 1em;
+  border-radius: 6px;
+}
+
+.place-details-card {
+  background: $green;
+  margin-left: 0;
+  h3 {
+    color: white;
+  }
+}
+
+.place-share-card {
+  margin-left: 0;
+  i {
+    font-size: 1.8em;
+    margin-right: 0.2em
+  }
+}
+
+.details {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  i {
+    font-size: 20px;
+  }
+}
+
+.show-card-title {
+  font-weight: bolder;
+}
+
+.place-booking-card {
+  background: $orange;
+  margin-left: 0;
+  h3 {
+    color: white;
+    margin-bottom: 0;
+  }
+  .btn {
+    font-weight: bolder;
+    color: $orange;
+  }
+}
+
+.date-inputs {
+  margin: 3px;
+}
