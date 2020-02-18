@@ -3,7 +3,7 @@ class Place < ApplicationRecord
 
   belongs_to :user
   has_many :place_reviews
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :title, presence: true, allow_blank: false
   validates :category, presence: true, allow_blank: false, inclusion: { in: CATEGORIES }
