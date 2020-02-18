@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   CATEGORIES = ['Boat', 'Garage', 'Garden', 'Loft', 'Swimming pool', 'Terrace']
-
+  has_many_attached :photos
   belongs_to :user
   has_many :place_reviews
   has_many :bookings, dependent: :destroy
