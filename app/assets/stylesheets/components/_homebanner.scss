@@ -1,0 +1,12 @@
+.homebanner {
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%);
+  color: white;
+  height: 400px;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  height: 100vh;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  margin-bottom: 32px;
+}
