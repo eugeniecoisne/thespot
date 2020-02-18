@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   def index
-    @bookings = policy_scope(Booking).order(date: :desc)
+    @bookings = policy_scope(Booking)
   end
 
   def show
@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     @booking.user = @current_user
     @booking.place = @place
     if @booking.save
-      redirect_to root_path
+      redirect_to user_path(@current_user)
     else
       render 'places/show'
     end
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.update(booking_params)
     if @booking.save
-      redirect_to user_bookings_path(@booking.user)
+      redirect_to user_path(@booking.user)
     else
       render 'edit'
     end
@@ -39,7 +39,7 @@ class BookingsController < ApplicationController
   def destroy
     authorize @booking
     @booking.destroy
-    redirect_to user_bookings_path(@booking.user)
+    redirect_to user_path(@booking.user)
   end
 
   private
