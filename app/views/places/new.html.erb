@@ -1,8 +1,12 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <h1>Create a new place</h1>
-      <%= render 'form', place: @place %>
+<div class="banner", style= "background-image: url('<%= image_path "swimmingpool13.jpg" %>')">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="m-3 text-center">
+          <h2><strong>Create a new place</strong></h2>
+            <%= render 'form', place: @place %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

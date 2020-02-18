@@ -1,0 +1,9 @@
+.placescontainer {
+  display: flex;
+}
+
+@media (min-width: 100px) and (max-width: 960px) {
+  .placescontainer {
+    flex-direction: column;
+  }
+}
