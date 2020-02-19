@@ -65,7 +65,7 @@
           <h3 class="show-card-title">Book this place !</h3>
           <div class="form-and-submit">
             <%= simple_form_for([@place, @booking]) do |f| %>
-              <%= f.input :date, as: :string, placeholder: Date.today.strftime('%Y-%m-%d'), label: false, input_html: { class: "datepicker" } %>
+              <%= f.input :date, as: :string, placeholder: 'Choose a date', label: false, input_html: { class: "datepicker" } %>
               <%= f.submit 'Book', class: 'btn btn-light w-100' %>
             <% end %>
           </div>

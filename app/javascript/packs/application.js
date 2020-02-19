@@ -27,11 +27,11 @@ import "../plugins/flatpickr"
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 import { initMapbox } from '../plugins/init_mapbox';
+import { initAutocomplete } from '../plugins/init_autocomplete';
+import { flatpickr } from '../plugins/flatpickr';
+
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
-})
-
-import { initAutocomplete } from '../plugins/init_autocomplete';
-document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
-})
+  flatpickr(".datepicker", {});
+});
