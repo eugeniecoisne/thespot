@@ -50,7 +50,12 @@
       <div class="card show-card">
         <h3 class="show-card-title">More informations about the place...</h3>
         <p class="show-card-text"><%= @place.description %></p>
-        <%= image_tag "https://www.google.com/maps/about/images/mymaps/mymaps-desktop-16x9.png", height: '350px' %>
+        <div id="map"
+              style="width: 100%;
+             height: 350px;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg">
+        </div>
       </div>
     </div>
 

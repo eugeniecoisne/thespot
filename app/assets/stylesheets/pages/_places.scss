@@ -7,3 +7,7 @@
     flex-direction: column;
   }
 }
+
+.show-card #map .mapboxgl-ctrl-geocoder {
+  display: none;
+}
