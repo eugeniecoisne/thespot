@@ -1,4 +1,4 @@
 <%= simple_form_for(booking) do |f| %>
-  <%= f.input :date %>
+  <%= f.input :date, as: :string, placeholder: 'Choose a date', label: false, input_html: { class: "datepicker" } %>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
