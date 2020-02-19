@@ -1,11 +1,11 @@
 <%= simple_form_for(place) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :category, collection: Place::CATEGORIES %>
-  <%= f.input :address, id: 'place_address' %>
-  <%= f.input :capacity %>
-  <%= f.input :price %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :title, label: false, placeholder: "title" %>
+  <%= f.input :description, label: false, placeholder: "description"  %>
+  <%= f.input :category, collection: Place::CATEGORIES, label: false, prompt: "category" %>
+  <%= f.input :address, id: 'place_address', label: false, placeholder: "address" %>
+  <%= f.input :capacity, label: false, placeholder: "capacity" %>
+  <%= f.input :price, label: false, placeholder: "price"%>
+  <%= f.input :photos, as: :file, input_html: { multiple: true }, label: false %>
   <%= f.submit class: 'btn btn-orange' %>
   <%= f.submit 'Cancel', class: 'btn btn-light' %>
 <% end %>
