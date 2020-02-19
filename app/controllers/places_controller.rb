@@ -4,6 +4,16 @@ class PlacesController < ApplicationController
 
   def index
     @places = policy_scope(Place)
+
+    @places_geo = Place.geocoded
+
+    @markers = @places_geo.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { place: place })
+      }
+    end
   end
 
   def show

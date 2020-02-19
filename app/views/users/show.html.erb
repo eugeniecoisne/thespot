@@ -42,7 +42,14 @@
 
   <div class="row justify-content-center mt-4">
     <div class="col-10">
-      <h3>My places</h3>
+      <div class="d-flex text-align-center">
+        <h3 class="mr-3">My places</h3>
+        <h5>
+          <%= link_to new_place_path do %>
+            <i class="fas fa-plus rounded-circle pt-2"></i>
+          <% end %>
+        </h5>
+      </div>
       <table class="table table-striped">
         <thead>
           <tr>
