@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
 
     @places_geo = Place.geocoded
 
+
     @markers = @places_geo.map do |place|
       {
         lat: place.latitude,
