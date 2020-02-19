@@ -1,16 +1,18 @@
 .banner {
   text-align: center;
   color: white;
-  height: 400px;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
-  height: 100vh;
   display: flex;
   align-items: top;
   justify-content: center;
-  margin-bottom: 32px;
 }
 
 .cancel {
   margin-left: 5px;
+}
+
+.btn-orange {
+  background-color: $orange;
+  color: white;
 }
