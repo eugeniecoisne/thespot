@@ -80,7 +80,11 @@
         <h6 class="show-card-title no-mb">Owner information</h6>
         <div class="place-user-information">
           <div class="user-card-avatar mr-3">
-            <%= image_tag "monkey.jpg", alt: "user-picture" %>
+            <% if @place.user.photo.attached? %>
+              <%= cl_image_tag @place.user.photo.key, alt: "user-picture" %>
+            <% else %>
+              <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", alt: "user-picture" %>
+            <% end %>
           </div>
           <div class="user-card-name">
             <%= @place.user.first_name %>
