@@ -1,9 +1,13 @@
 .places-card {
   width: 280px;
-  height :260px;
+  height :280px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.places-card:hover {
+  color: #294ea5;
 }
 
 .places-card .img-places-card {
