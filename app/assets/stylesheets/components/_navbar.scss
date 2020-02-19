@@ -24,3 +24,14 @@
 .search:hover {
    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
+
+.avatar_user_navbar {
+  margin-left: 0;
+  display: flex;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
