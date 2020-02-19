@@ -17,12 +17,19 @@
           </div>
           <div>
             <h2><%= place.price %> €</h2>
-            <p><%= place.capacity %> x <i class="fas fa-user"></i></p>
+            <p><i class="fas fa-users pr-2"></i><%= place.capacity %></p>
           </div>
         </div>
       </div>
       <% end %>
     <% end %>
   </div>
-      <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg'>
+  <div id="map"
+        style="width: 100%;
+       height: 100vh;
+       position: sticky;
+       top: 0;"
+       data-markers="<%= @markers.to_json %>"
+       data-mapbox-api-key="pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg">
+  </div>
 </div>

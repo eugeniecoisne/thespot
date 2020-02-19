@@ -24,3 +24,14 @@ require("channels")
 
 import "bootstrap";
 import "../plugins/flatpickr"
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
+import { initMapbox } from '../plugins/init_mapbox';
+document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+})
+
+import { initAutocomplete } from '../plugins/init_autocomplete';
+document.addEventListener('turbolinks:load', () => {
+  initAutocomplete();
+})

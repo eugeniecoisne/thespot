@@ -2,7 +2,7 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :category, collection: Place::CATEGORIES %>
-  <%= f.input :address %>
+  <%= f.input :address, id: 'place_address' %>
   <%= f.input :capacity %>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
