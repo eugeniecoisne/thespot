@@ -1,8 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "thespot.png"%>
-    <% end %>
-  <input class="search" type="text" placeholder="Search a city...">
+  <% end %>
+  <%= simple_form_for :filter, url: places_path, method: :get do |f| %>
+    <%= f.input :address, placeholder: "Search a city...", label: false, input_html: { class: 'search' }  %>
+  <% end %>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
