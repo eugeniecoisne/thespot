@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   CATEGORIES = ['Boat', 'Garage', 'Garden', 'Loft', 'Swimming pool', 'Terrace']
+  searchkick
   has_many_attached :photos
   belongs_to :user
   has_many :place_reviews
