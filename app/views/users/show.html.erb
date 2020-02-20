@@ -11,11 +11,11 @@
                 <% if booking.place.photos.attached? %>
                   <%= cl_image_tag booking.place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
                 <% else %>
-                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                  <%= image_tag "degrade-appareil.png", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
                 <% end %>
                 <div class="my-dashboard-card-infos">
                   <h2><%= booking.date %></h2>
-                  <h3><strong><%= booking.place.title %></strong>, <%= booking.place.address.split(",")[-3] %></h3>
+                  <h3><strong><%= link_to booking.place.title, place_path(booking.place)%></strong>, <%= booking.place.address.split(",")[-3] %></h3>
                   <% if booking.date >= Date.today %>
                     <p id="status-orange">To come<p>
                   <% else %>
@@ -46,10 +46,10 @@
                 <% if place.photos.attached? %>
                   <%= cl_image_tag place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
                 <% else %>
-                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                  <%= image_tag "degrade-appareil.png", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
                 <% end %>
                 <div class="my-dashboard-card-infos">
-                  <h2><%= place.title %></h2>
+                  <h2><%= link_to place.title, place_path(place)%></h2>
                   <h3><%= place.address.split(",")[-3] %></h3>
                   <p id="bookings-count-green">Bookings : <%= place.bookings.count %></p>
                 </div>
