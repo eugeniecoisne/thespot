@@ -1,3 +1,5 @@
+<!-- CAROUSEL -->
+
 <% if @place.photos.attached? %>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -15,6 +17,10 @@
         <div class="carousel-item">
           <%= cl_image_tag @place.photos[2].key, alt: "Third slide", class: "d-block w-100", height: 1000, crop: :fill %>
         </div>
+        <% if @place.user = current_user %>
+          <a href="#titleModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-camera"></i></a>
+          <%= render 'update_modal', place: @place %>
+        <% end %>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -51,18 +57,46 @@
   <% end %>
 <% end %>
 
+<!-- TITLE & ADDRESS & AVERAGE RATING -->
+
 <div class="container mt-3">
   <div class="row">
     <div class="col-12">
       <div class="card show-card text-center">
-        <h1 class="show-card-title"><%= @place.title %></h1>
-        <p class="show-address"><%= @place.address %></p>
+        <% if @place.user == current_user %>
+          <h1 class="show-card-title"><%= @place.title %>
+            <a href="#titleModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt" style="font-size: 20px"></i></a>
+          </h1>
+          <%= render 'update_modal', place: @place %>
+        <% else %>
+          <h1 class="show-card-title"><%= @place.title %></h1>
+        <% end %>
+
+
+        <% if @place.user == current_user %>
+          <p class="show-address"><%= @place.address %>
+            <a href="#addressModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
+          </p>
+          <%= render 'update_modal', place: @place %>
+        <% else %>
+          <p class="show-address"><%= @place.address %></p>
+        <% end %>
       </div>
     </div>
+
+    <!-- DESCRIPTION & MAP & REVIEWS -->
+
     <div class="col-8">
       <div class="card show-card">
         <h3 class="show-card-title">More informations about the place...</h3>
-        <p class="show-card-text"><%= @place.description %></p>
+        <% if @place.user == current_user %>
+          <p class="show-card-text"><%= @place.description %>
+            <a href="#descriptionModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
+          </p>
+          <%= render 'update_modal', place: @place %>
+        <% else %>
+          <p class="show-card-text"><%= @place.description %></p>
+        <% end %>
         <div id="map"
               style="width: 100%;
              height: 350px;"
@@ -71,6 +105,8 @@
         </div>
       </div>
     </div>
+
+    <!-- BOOKING CARD -->
 
     <div class="col-4">
       <% if @place.user != current_user %>
@@ -84,8 +120,12 @@
           </div>
         </div>
       <% end %>
+
+      <!-- DETAILS CARD -->
+
       <div class="card show-card place-details-card">
         <div class="details">
+
           <div class="details-capacity">
             <i class="fas fa-users pr-2"></i>
             <span><%= @place.capacity %></span>
@@ -94,8 +134,16 @@
             <i class="fas fa-euro-sign pr-2"></i>
             <span><%= @place.price %></span>
           </div>
+
+          <% if @place.user == current_user %>
+            <a href="#capacityPriceModal" data-toggle="modal" data-whatever="@mdo"><i id= "white-pencil" class="fas fa-pencil-alt"></i></a>
+          <% end %>
+
         </div>
       </div>
+
+      <!-- OWNER INFORMATION -->
+
       <div class="card show-card place-user-card">
         <h6 class="show-card-title no-mb">Owner information</h6>
         <div class="place-user-information">
@@ -111,6 +159,9 @@
           </div>
         </div>
       </div>
+
+      <!-- CHAT MESSAGES -->
+
       <% if user_signed_in? %>
       <button id="chat-button" class="btn-green py-2 px-3 mb-4 rounded">Start a conversation</button>
       <% end %>
@@ -135,6 +186,9 @@
           <input type="submit" value="Send" class="btn btn-green rounded">
         </form>
       </div>
+
+      <!-- SHARING -->
+
       <div class="card show-card place-share-card">
         <div class="flex-align">
           <h6 class="show-card-title no-mb">Share this place</h6>

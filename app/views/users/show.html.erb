@@ -15,7 +15,7 @@
                 <% end %>
                 <div class="my-dashboard-card-infos">
                   <h2><%= booking.date %></h2>
-                  <h3><strong><%= link_to booking.place.title, place_path(booking.place)%></strong>, <%= booking.place.address.split(",")[-3] %></h3>
+                  <h3><strong><%= booking.place.title %></strong>, <%= booking.place.address.split(",")[-3] %></h3>
                   <% if booking.date >= Date.today %>
                     <p id="status-orange">To come<p>
                   <% else %>
