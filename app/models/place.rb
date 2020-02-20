@@ -13,4 +13,13 @@ class Place < ApplicationRecord
   validates :address, presence: true, allow_blank: false
   validates :capacity, presence: true, numericality: { only_integer: true }
   validates :price, presence: true, numericality: { only_integer: true }
+
+  include PgSearch::Model
+  pg_search_scope :search_city,
+      against: [ :address ],
+      using: {
+        tsearch: { prefix: true }
+      }
+  pg_search_scope :search_category,
+      against: [ :category ]
 end
