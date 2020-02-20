@@ -4,7 +4,7 @@
       <%= link_to place_path(place) do %>
       <div class="places-card">
         <% if place.photos.attached? %>
-          <div class="img-places-card" style="background-image: url('<%= cl_image_path place.photos.sample.key %>')">
+          <div class="img-places-card" style="background-image: url('<%= cl_image_path place.photos.sample.key, height: 300, width: 300, crop: :fill %>')">
           </div>
         <% else %>
           <div class="img-places-card" style="background-image: url('<%= image_path "monkey.jpg" %>')">
