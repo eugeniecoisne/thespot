@@ -10,6 +10,24 @@
   }
 }
 
+.carousel-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  input[type=file]::-webkit-file-upload-button {
+    color: $gray;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: white;
+  }
+  input[type='file'] {
+    color: transparent
+  }
+}
+
 #carousel-inner-no-photo {
   align-items: center;
+  background-color: $light-gray;
 }
