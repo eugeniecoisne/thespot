@@ -112,11 +112,11 @@
         </div>
       </div>
       <% if user_signed_in? %>
-      <button id="chat-button" class="btn-primary p-1 pr-3 pl-3 mb-4 rounded">Start a conversation</button>
+      <button id="chat-button" class="btn-green py-2 px-3 mb-4 rounded">Start a conversation</button>
       <% end %>
       <div id="chatroom" class="rounded chatroom-hidden">
 
-        <h5>Votre conversation avec <%= @place.user.first_name %> :</h5>
+        <h5>Your conversation with <%= @place.user.first_name %> :</h5>
 
         <div id="messages">
 
@@ -132,7 +132,7 @@
             <label for="your-name">From</label>
             <input type="text" name="content" id="your-name" class="form-control" placeholder="Your name">
           </div>
-          <input type="submit" value="Send" class="btn btn-primary rounded">
+          <input type="submit" value="Send" class="btn btn-green rounded">
         </form>
       </div>
       <div class="card show-card place-share-card">
