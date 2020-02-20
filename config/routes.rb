@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:show, :edit, :update, :destroy]
   resources :place_reviews, except: [:new, :create]
+  resources :users, only: :index
 
 end
