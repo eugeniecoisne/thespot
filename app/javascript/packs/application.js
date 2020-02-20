@@ -84,3 +84,14 @@ const refresh = () => {
 document.addEventListener('turbolinks:load', () => {
   setInterval(refresh, 1000);
 });
+
+
+const button = document.getElementById("chat-button");
+console.log(button);
+
+const chatDiv = document.getElementById("chatroom");
+
+button.addEventListener('click', (event) => {
+  console.log("hello");
+  chatDiv.classList.toggle("chatroom-display");
+})
