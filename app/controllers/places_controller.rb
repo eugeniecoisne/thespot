@@ -3,14 +3,13 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @places = policy_scope(Place)
     if params[:filter][:address].present?
-      @places = policy_scope(Place).search("#{params[:filter][:address]}")
+      @places = Place.search(params[:filter][:address])
     else
-      @places = policy_scope(Place)
+      @places = Place.all
     end
-
-    @places_geo = @places.geocoded
-    @markers = @places_geo.map do |place|
+    @markers = @places.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude,

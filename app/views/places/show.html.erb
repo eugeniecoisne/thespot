@@ -44,18 +44,25 @@
       <div class="card show-card text-center">
         <h1 class="show-card-title"><%= @place.title %></h1>
         <p class="show-address"><%= @place.address %></p>
+        <p class="rating"> <em>Rating: <%= @place.average_rating %> </em></p>
       </div>
     </div>
     <div class="col-8">
       <div class="card show-card">
         <h3 class="show-card-title">More informations about the place...</h3>
         <p class="show-card-text"><%= @place.description %></p>
-        <div id="map"
+        <div id="map" class="mb-3"
               style="width: 100%;
              height: 350px;"
              data-markers="<%= @markers.to_json %>"
              data-mapbox-api-key="pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg">
         </div>
+          <h3 class="show-card-title mt-3">Give us your thoughts on that place: </h3>
+          <%= simple_form_for([@place, @place_review]) do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :content %>
+          <%= f.submit class: 'btn btn-orange' %>
+          <% end %>
       </div>
     </div>
 
@@ -131,13 +138,17 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <%= simple_form_for([@place, @place_review]) do |f| %>
-        <%= f.input :rating %>
-        <%= f.input :content %>
-        <%= f.submit %>
+  <div>
+    <div class="col-8">
+      <div class="card show-card">
+        <h2>Reviews about this place...</h2>
+        <div class="show-card-text"> <ul> <% @place.place_reviews.each do |place_review| %>
+      <%= place_review.user.first_name %>
+      <%= place_review.content %>
       <% end %>
+      </ul>
     </div>
-  </div>
 </div>
+
+
+

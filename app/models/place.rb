@@ -14,4 +14,18 @@ class Place < ApplicationRecord
   validates :address, presence: true, allow_blank: false
   validates :capacity, presence: true, numericality: { only_integer: true }
   validates :price, presence: true, numericality: { only_integer: true }
+
+
+  def average_rating
+    all_ratings = []
+    place_reviews.each do |place_review|
+    all_ratings << place_review.rating
+    end
+    sum = all_ratings.sum
+    number_of_ratings = all_ratings.length
+    return sum.fdiv(number_of_ratings).round(1)
+  end
 end
+
+
+# place_reviews.map { |pr| pr.rating }.sum / place_reviews.length
