@@ -29,17 +29,24 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { flatpickr } from '../plugins/flatpickr';
+import { display } from '../plugins/chat-button';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
   flatpickr(".datepicker", {});
+  display();
 });
 
-const batch = 'the-spot'; // change to your own batch id
+
+
+
+
+
+// DO NOT TOUCH - LIVECHAT CODE
+const batch = 'the-spot';
 const baseUrl = `https://wagon-chat.herokuapp.com/${batch}/messages`;
 
-// Your turn to code!
 const clearMessages = () => {
   document.querySelectorAll("li").forEach((elem) => {
     elem.remove();
@@ -84,14 +91,3 @@ const refresh = () => {
 document.addEventListener('turbolinks:load', () => {
   setInterval(refresh, 1000);
 });
-
-
-const button = document.getElementById("chat-button");
-console.log(button);
-
-const chatDiv = document.getElementById("chatroom");
-
-button.addEventListener('click', (event) => {
-  console.log("hello");
-  chatDiv.classList.toggle("chatroom-display");
-})

@@ -103,17 +103,11 @@
   .my-places-cards {
     grid-template-columns: 1fr;
   }
-  #map {
-    display: none;
-  }
 }
 
 @media (min-width: 920px) {
   .my-places-cards {
     grid-template-columns: 1fr 1fr;
-  }
-  #map {
-    display: none;
   }
 }
 
