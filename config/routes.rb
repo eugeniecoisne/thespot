@@ -9,10 +9,14 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     resources :bookings, only: :index
+    member do
+      get :public
+    end
+    resources :user_reviews, only: :create
   end
 
   resources :bookings, only: [:show, :edit, :update, :destroy]
   resources :place_reviews, except: [:new, :create]
-  resources :users, only: :index
+  resources :user_reviews, except: [:new, :create]
 
 end

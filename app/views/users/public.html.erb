@@ -1,0 +1,11 @@
+<h1>Public profil</h1>
+
+<div class="row justify-content-center">
+  <div class="col-10">
+    <%= simple_form_for([@user, @user_review]) do |f| %>
+      <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
+      <%= f.input :content %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
