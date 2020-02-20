@@ -39,10 +39,6 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 
-
-
-
-
 // DO NOT TOUCH - LIVECHAT CODE
 const batch = 'the-spot';
 const baseUrl = `https://wagon-chat.herokuapp.com/${batch}/messages`;
@@ -88,6 +84,6 @@ const refresh = () => {
     });
 };
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   setInterval(refresh, 1000);
 });

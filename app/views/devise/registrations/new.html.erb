@@ -1,7 +1,7 @@
 <div class="banner", style= "background-image: url('<%= image_path "banner1.jpg" %>')">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-6">
+      <div class="col-6 mt-4">
         <div class="m-3 text-center">
           <h2><strong>Sign up</strong></h2>
         </div>
@@ -9,21 +9,27 @@
           <%= f.error_notification %>
 
           <div class="form-inputs new-account-form">
-            <%= f.input :last_name %>
-            <%= f.input :first_name %>
+            <%= f.input :last_name, label: false, placeholder: "Last name" %>
+            <%= f.input :first_name, label: false, placeholder: "First name"  %>
             <%= f.input :birth_date, as: :string, placeholder: 'Date of birth', label: false, input_html: { class: "datepicker" } %>
             <%= f.input :email,
                         required: true,
                         autofocus: true,
+                        label: false,
+                        placeholder: "Email",
                         input_html: { autocomplete: "email" }%>
             <%= f.input :password,
                         required: true,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        label: false,
+                        placeholder: "Password",
                         input_html: { autocomplete: "new-password" } %>
             <%= f.input :password_confirmation,
                         required: true,
+                        label: false,
+                        placeholder: "Password confirmation",
                         input_html: { autocomplete: "new-password" } %>
-            <%= f.input :photo, as: :file %>
+            <%= f.input :photo, as: :file, label: false %>
           </div>
 
           <div class="form-actions mb-4">
