@@ -27,6 +27,7 @@ class PlacesController < ApplicationController
   def show
     authorize @place
     @booking = Booking.new
+    @place_review = PlaceReview.new
     @markers = [{
       lat: @place.latitude,
       lng: @place.longitude
