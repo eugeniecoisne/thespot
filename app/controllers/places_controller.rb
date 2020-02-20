@@ -3,13 +3,8 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if params[:commit] == "Search"
-      @search = params[:filter][:address].capitalize
-      if @search != ""
-        @places = policy_scope(Place).where("address LIKE ?", "%#{@search}%")
-      else
-        @place = policy_scope(Place)
-      end
+    if params[:filter][:address].present?
+      @places = policy_scope(Place).search("#{params[:filter][:address]}")
     else
       @places = policy_scope(Place)
     end
