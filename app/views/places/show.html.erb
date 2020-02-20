@@ -131,4 +131,13 @@
       </div>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= simple_form_for([@place, @place_review]) do |f| %>
+        <%= f.input :rating %>
+        <%= f.input :content %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
 </div>
