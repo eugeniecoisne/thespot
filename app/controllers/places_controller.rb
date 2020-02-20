@@ -66,7 +66,7 @@ class PlacesController < ApplicationController
   def destroy
     authorize @place
     @place.destroy
-    redirect_to places_path
+    redirect_to user_path(current_user)
   end
 
   private
