@@ -1,11 +1,69 @@
-<h1>Public profil</h1>
-
-<div class="row justify-content-center">
-  <div class="col-10">
-    <%= simple_form_for([@user, @user_review]) do |f| %>
-      <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
-      <%= f.input :content %>
-      <%= f.submit %>
-    <% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <div class="card card-owner-profil">
+        <div class="user-card-avatar mr-3" >
+          <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, height: 40, width: 40, crop: :fill%>
+          <% else %>
+          <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", class: "avatar dropdown-toggle avatar_user_navbar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+        </div>
+        <div class="d-flex border-bottom">
+          <div class="number-booking text-center">
+            <p><i class="fas fa-handshake" style="color:#25A5AD"></i>24</p>
+            <p>bookings</p>
+          </div>
+          <div class="evaluation text-center">
+            <p><i class="fas fa-star" style="color:#25A5AD"></i> 4,75/5</p>
+            <p>evaluations</p>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+            <p>Member since 2020</p>
+          </div>
+      </div>
+      <div class="card mt-5">
+        <%= simple_form_for([@user, @user_review]) do |f| %>
+          <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
+          <%= f.input :content %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-7">
+      <h2 class="mb-3">Hey, I'm <%= @user.first_name %></h2>
+      <h6 class="border-bottom pb-4">  <i class="fas fa-home mr-2" style="color:#25A5AD"></i> Lives in <%= @user.address %></h6>
+      <h4 class="mt-4"><%= @user.first_name %>'s places</h4>
+      <div class="my-dashboard-cards my-places-cards">
+          <% @current_user.places.each do |place| %>
+            <div class="my-dashboard-card align-items-end">
+              <div class="my-dashboard-card-place">
+                <% if place.photos.attached? %>
+                  <%= cl_image_tag place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% else %>
+                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% end %>
+                <div class="my-dashboard-card-infos">
+                  <h2><%= place.title %></h2>
+                  <h3><%= place.address.split(",")[-3] %></h3>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <h4 class="mt-4"><%= @user.first_name %>'s reviews</h4>
+      <div class="my-dashboard-cards my-places-cards">
+          <div class="my-dashboard-card align-items-end">
+            <div class="card-body">
+            <h5 class="card-text"><i class="fas fa-star" style="color:#25A5AD"></i> 4/5</h5>
+            <h5 class="card-text"><em>"Très avenant"</em></h5>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
   </div>
 </div>
