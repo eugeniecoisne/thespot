@@ -3,11 +3,18 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @places = policy_scope(Place)
+    if params[:commit] == "Search"
+      @search = params[:filter][:address].capitalize
+      if @search != ""
+        @places = policy_scope(Place).where("address LIKE ?", "%#{@search}%")
+      else
+        @place = policy_scope(Place)
+      end
+    else
+      @places = policy_scope(Place)
+    end
 
-    @places_geo = Place.geocoded
-
-
+    @places_geo = @places.geocoded
     @markers = @places_geo.map do |place|
       {
         lat: place.latitude,
