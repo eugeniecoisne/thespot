@@ -94,7 +94,7 @@
             <% end %>
           </div>
           <div class="user-card-name">
-            <%= @place.user.first_name %>
+            <%= link_to @place.user.first_name, public_user_path(@place.user) %>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <%= simple_form_for([@place, @place_review]) do |f| %>
-        <%= f.input :rating %>
+        <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
         <%= f.input :content %>
         <%= f.submit %>
       <% end %>

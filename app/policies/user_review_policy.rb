@@ -1,9 +1,5 @@
-class UserPolicy < ApplicationPolicy
-  def show?
-    true
-  end
-
-  def public?
+class UserReviewPolicy < ApplicationPolicy
+  def create?
     true
   end
 
