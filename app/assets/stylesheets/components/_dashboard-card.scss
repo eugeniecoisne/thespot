@@ -1,0 +1,148 @@
+// ************* Dashboard CSS **************
+
+.my-dashboard-cards {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.my-dashboard-title {
+  margin-bottom: 0.5em;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: bolder;
+}
+
+.my-dashboard-card {
+  height: 120px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .my-dashboard-card-place {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+  .my-dashboard-card-infos {
+    padding: 16px;
+  }
+
+  .my-bookings-card-actions {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// ************* My bookings CSS **************
+
+.my-bookings-box {
+  background-color: $green-transparent;
+  padding: 2em;
+}
+
+.my-bookings-card-actions {
+  .btn {
+    margin: 0.3em 0;
+    font-size: 11px;
+    padding: 0.5em 1.2em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .btn:hover {
+    color: $light-gray;
+  }
+  .btn-green {
+    background-color: $green;
+    color: white;
+  }
+}
+
+// ************* My places CSS **************
+
+.my-places-box {
+  background-color: $light-gray2;
+  padding: 2em;
+}
+
+.my-places-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-grow: 1;
+    grid-gap: 12px;
+}
+
+@media (min-width: 100px) and (max-width: 920px) {
+  .my-places-cards {
+    grid-template-columns: 1fr;
+  }
+  #map {
+    display: none;
+  }
+}
+
+@media (min-width: 920px) {
+  .my-places-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  #map {
+    display: none;
+  }
+}
+
+.my-places-card-actions {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  a {
+    color: $green;
+  }
+}
+
+// ************* IDs CSS **************
+#card-grey {
+  background: $light-gray2;
+}
+
+#status-orange {
+  color: $orange;
+  font-weight: bolder;
+}
+
+#bookings-count-green {
+  color: $green;
+  font-weight: bolder;
+}
+
+#green-title {
+  color: $green;
+}
+

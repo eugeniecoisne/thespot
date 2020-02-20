@@ -1,82 +1,71 @@
 <div class="container">
   <div class="row justify-content-center mt-4">
     <div class="col-10">
-      <h3>My bookings</h3>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Place</th>
-            <th scope="col">Address</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @current_user.bookings.sort_by { |booking| booking.date }.reverse.each do |booking| %>
-              <tr>
-                <td><%= booking.date %></td>
-                <td>
-                  <% if booking.date >= Date.today %>
-                    to come
-                  <% else %>
-                    old
-                  <% end %>
-                </td>
-                <td><%= link_to booking.place.title, place_path(booking.place) %></td>
-                <td><%= booking.place.address %></td>
-                <td>
-                  <%= link_to edit_booking_path(booking) do %>
-                    <i class="fas fa-pencil-alt"></i>
-                  <% end %>
-                  <%= link_to booking_path(booking), method: :delete, date: { confirm: 'Are you sure?' } do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
-  <div class="row justify-content-center mt-4">
-    <div class="col-10">
-      <div class="d-flex text-align-center">
-        <h3 class="mr-3">My places</h3>
-        <h5>
-          <%= link_to new_place_path do %>
-            <i class="fas fa-plus rounded-circle pt-2"></i>
+      <div class="my-bookings-box mb-3">
+        <h3 class="my-dashboard-title">My bookings</h3>
+        <div class="my-dashboard-cards">
+          <% @current_user.bookings.sort_by { |booking| booking.date }.reverse.each do |booking| %>
+            <div class="my-dashboard-card" id="<% if booking.date < Date.today %>card-grey<% end %>">
+              <div class="my-dashboard-card-place">
+                <% if booking.place.photos.attached? %>
+                  <%= cl_image_tag booking.place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% else %>
+                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% end %>
+                <div class="my-dashboard-card-infos">
+                  <h2><%= booking.date %></h2>
+                  <h3><strong><%= booking.place.title %></strong>, <%= booking.place.address.split(",")[-3] %></h3>
+                  <% if booking.date >= Date.today %>
+                    <p id="status-orange">To come<p>
+                  <% else %>
+                    <p>Old<p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="my-bookings-card-actions">
+                <% if booking.date >= Date.today %>
+                  <%= link_to 'show', place_path(booking.place), class: "btn btn-green" %>
+                  <%= link_to 'edit', edit_place_path(booking.place), class: "btn btn-green" %>
+                  <%= link_to 'delete', booking_path(booking), method: :delete, date: { confirm: 'Are you sure?' }, class: "btn btn-orange" %>
+                <% else %>
+                  <%= link_to 'show', place_path(booking.place), class: "btn btn-green" %>
+                <% end %>
+              </div>
+            </div>
           <% end %>
-        </h5>
+        </div>
       </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Place</th>
-            <th scope="col">Address</th>
-            <th scope="col">Number of bookings</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @current_user.places.each do |place| %>
-              <tr>
-                <td><%= link_to place.title, place_path(place) %></td>
-                <td><%= place.address %></td>
-                <td><%= place.bookings.count %></td>
-                <td>
-                  <%= link_to edit_place_path(place) do %>
-                    <i class="fas fa-pencil-alt"></i>
-                  <% end %>
-                  <%= link_to place_path(place), method: :delete, date: { confirm: 'Are you sure?' } do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
+
+      <div class="my-places-box">
+        <h3 class="my-dashboard-title" id="green-title">My places</h3>
+        <div class="my-dashboard-cards my-places-cards">
+          <% @current_user.places.each do |place| %>
+            <div class="my-dashboard-card align-items-end">
+              <div class="my-dashboard-card-place">
+                <% if place.photos.attached? %>
+                  <%= cl_image_tag place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% else %>
+                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% end %>
+                <div class="my-dashboard-card-infos">
+                  <h2><%= place.title %></h2>
+                  <h3><%= place.address.split(",")[-3] %></h3>
+                  <p id="bookings-count-green">Bookings : <%= place.bookings.count %></p>
+                </div>
+              </div>
+              <div class="my-places-card-actions">
+                <%= link_to edit_place_path(place) do %>
+                  <i class="fas fa-pencil-alt"></i>
+                <% end %>
+                <%= link_to place_path(place), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
