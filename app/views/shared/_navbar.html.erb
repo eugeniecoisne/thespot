@@ -19,7 +19,7 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown avatar_user_navbar">
         <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, height: 40, width: 40, crop: :fill%>
         <% else %>
           <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", class: "avatar dropdown-toggle avatar_user_navbar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
