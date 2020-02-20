@@ -98,6 +98,26 @@
           </div>
         </div>
       </div>
+      <div id="chatroom" class="rounded">
+        <h5>Votre conversation avec <%= @place.user.first_name %></h5>
+
+        <div id="messages">
+          <h6>Messages</h6>
+          <ul class="list-unstyled">
+          </ul>
+        </div>
+        <form action="#" id="comment-form" class="border-top">
+          <div class="form-group">
+            <label for="your-message">Your message</label>
+            <textarea type="text" name="content" id="your-message" class="form-control" placeholder="Your message"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="your-name">From</label>
+            <input type="text" name="content" id="your-name" class="form-control" placeholder="Your name">
+          </div>
+          <input type="submit" value="Send" class="btn btn-primary">
+        </form>
+      </div>
       <div class="card show-card place-share-card">
         <div class="flex-align">
           <h6 class="show-card-title no-mb">Share this place</h6>
