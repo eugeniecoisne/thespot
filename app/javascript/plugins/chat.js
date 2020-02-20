@@ -32,7 +32,7 @@ const runChat = () => {
         addMessage(data.content, data.author, data.created_at);
       });
   });
-
+};
   const refresh = () => {
     fetch(`${baseUrl}`)
       .then(response => response.json())
@@ -44,9 +44,4 @@ const runChat = () => {
       });
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
-    setInterval(refresh, 1000);
-  });
-};
-
-export { runChat };
+export { runChat, refresh };
