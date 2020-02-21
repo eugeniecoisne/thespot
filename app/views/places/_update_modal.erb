@@ -67,6 +67,31 @@
   </div>
 </div>
 
+<!-- REVIEW MODAL -->
+
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="form-group">
+        <%= simple_form_for([@place, @place_review], remote: true) do |f| %>
+        <div class="modal-body">
+          <button type="button" class="close mb-3" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
+          <%= f.input :content, label: false, placeholder: "Write a review..." %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit class: 'btn btn-green', value: "Send review" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- CAPACITY & PRICE MODAL -->
 
 <div class="modal fade" id="capacityPriceModal" tabindex="-1" role="dialog" aria-labelledby="capacityPriceModalLabel" aria-hidden="true">
@@ -90,4 +115,5 @@
     </div>
   </div>
 </div>
+
 

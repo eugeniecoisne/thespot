@@ -84,3 +84,13 @@
   background-color: $green;
   color: white;
 }
+
+.list-group-item-green {
+  background-color: $green;
+  a {
+    color: white;
+  }
+  :hover {
+    opacity: 0.7;
+  }
+}
