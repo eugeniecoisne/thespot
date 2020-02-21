@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
   has_many :places, dependent: :destroy
-  has_many :user_reviews
-  has_many :place_reviews
+  has_many :user_reviews, dependent: :destroy
+  has_many :place_reviews, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
   validates :last_name, presence: true, allow_blank: false

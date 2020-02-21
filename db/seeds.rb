@@ -10,19 +10,19 @@ puts "OKAY NO DATA - GO TO CREATE NEEEEEEEW DATAAAAAAAS"
 
 puts "Create 2 users"
 User.create!(
-  email: "hello@world.com",
+  email: "booba@booba.com",
   password: "123456",
-  last_name: "World",
-  first_name: "Hello",
-  birth_date: "1993-07-08"
+  last_name: "Booba",
+  first_name: "Booba",
+  birth_date: "1985-07-08"
 )
 
 User.create!(
-  email: "bonjour@monde.com",
+  email: "president@avant.com",
   password: "123456",
-  last_name: "Monde",
-  first_name: "Bonjour",
-  birth_date: "1994-12-08"
+  last_name: "Sarkozy",
+  first_name: "Nicolas",
+  birth_date: "1953-12-08"
 )
 
 puts "Create users done !"
