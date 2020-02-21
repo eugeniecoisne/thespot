@@ -24,13 +24,13 @@
         <div class="card-body card-owner-body mx-3 border-bottom">
           <div class="bookings-and-average-rating">
             <div class="card-owner-important-info">
-              <h4><i class="fas fa-calendar-check"></i>24</h4>
+              <h4><i class="fas fa-calendar-check"></i><%= @user.bookings.count %></h4>
               <p>bookings</p>
             </div>
             <div class="card-owner-important-info">
               <div class="d-flex inline-flex align-items-center">
                 <h4>
-                  <i class="fas fa-star"></i>4,75
+                  <i class="fas fa-star"></i><%= @user.average %>
                 </h4>
                 <h6 class="ml-1">/5</h6>
               </div>
@@ -38,14 +38,14 @@
             </div>
           </div>
           <div class="member-since-info">
-            <h6>Member since 2020</h6>
+            <h6>Member since <%= @user.created_at.year %></h6>
           </div>
         </div>
 
         <!-- OWNER REVIEW FORM -->
 
         <div class="card-footer card-owner-footer my-3">
-          <%= simple_form_for([@user, @user_review]) do |f| %>
+          <%= simple_form_for([@user, @user_review], remote: true) do |f| %>
             <%= f.input :rating, collection: 0..5, as: :radio_buttons, input_html: { class: "radio-buttons"} %>
             <%= f.input :content, label: false, placeholder: "Write a review...", :input_html => {:rows => 5} %>
             <%= f.submit class: "btn btn-orange", value: "Send review" %>

@@ -12,4 +12,16 @@ class User < ApplicationRecord
   validates :last_name, presence: true, allow_blank: false
   validates :first_name, presence: true, allow_blank: false
   validates :birth_date, presence: true, allow_blank: false
+
+  def average
+    ratings = []
+    average = 0
+    if user_reviews.present?
+      user_reviews.each { |review| ratings << review.rating }
+      average = ratings.sum.fdiv(user_reviews.count).round(1)
+    else
+      average = "-"
+    end
+    average
+  end
 end
