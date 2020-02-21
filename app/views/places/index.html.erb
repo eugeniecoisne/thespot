@@ -1,7 +1,7 @@
 <div class="placescontainer">
   <div class="places-cards">
     <% @places.each do |place| %>
-      <%= link_to place_path(place) do %>
+      <%= link_to place_path(place), data: { turbolinks: false } do %>
       <div class="places-card">
         <% if place.photos.attached? %>
           <div class="img-places-card" style="background-image: url('<%= cl_image_path place.photos.sample.key, height: 300, width: 300, crop: :fill %>')">

@@ -170,8 +170,7 @@
         <h5>Your conversation with <%= @place.user.first_name %> :</h5>
 
         <div id="messages">
-
-          <ul class="list-unstyled">
+          <ul class="list-unstyled chat-messages">
           </ul>
         </div>
         <form action="#" id="comment-form" class="border-top">
@@ -204,7 +203,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-10">
-      <%= simple_form_for([@place, @place_review]) do |f| %>
+      <%= simple_form_for([@place, @place_review], remote: true) do |f| %>
         <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
         <%= f.input :content %>
         <%= f.submit %>

@@ -36,22 +36,25 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   flatpickr(".datepicker", {});
   display();
+  setInterval(refresh, 1000);
 });
-
 
 // DO NOT TOUCH - LIVECHAT CODE
 const batch = 'the-spot';
 const baseUrl = `https://wagon-chat.herokuapp.com/${batch}/messages`;
 
 const clearMessages = () => {
-  document.querySelectorAll("li").forEach((elem) => {
+  document.querySelectorAll(".chat-message").forEach((elem) => {
     elem.remove();
   });
 };
 
 const addMessage = (message, author, date) => {
   const time = Math.round((Date.now() - new Date(date)) / 60000);
-  document.querySelector(".list-unstyled").insertAdjacentHTML("afterbegin", `<li><b>${author}</b> : ${message}`);
+  const list = document.querySelector(".chat-messages");
+  if (list) {
+    list.insertAdjacentHTML("afterbegin", `<li class="chat-message"><b>${author}</b> : ${message}`);
+  }
 };
 
 document.getElementById('comment-form').addEventListener("submit", (event) => {
@@ -84,6 +87,6 @@ const refresh = () => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  setInterval(refresh, 1000);
-});
+// document.addEventListener('turbolinks:load', () => {
+//   // setInterval(refresh, 1000);
+// });
