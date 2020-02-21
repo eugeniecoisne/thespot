@@ -123,7 +123,6 @@
         <!--  reviews -->
 
       <div class="card show-card">
-
         <% if @place.place_reviews.present? %>
           <h3 class="show-card-title pt-2">Reviews about this place...</h3>
           <div class="show-card-text">
@@ -131,14 +130,17 @@
               <% @place.place_reviews.each do |place_review| %>
               <li class="list-group-item d-flex flex-inline">
                 <p><strong><%= place_review.user.first_name %></strong></p>
-                <p class="ml-4"><%= place_review.content %></p>
+                <div>
+                  <p class="ml-4"><%= place_review.content %></p>
+                  <footer class="blockquote-footer"><i class="fas fa-star"></i> <%= place_review.rating %> /5</footer>
+                </div>
               </li>
             <% end %>
-              <li class="list-group-item d-flex flex-inline list-group-item-green"><a href="#reviewModal" data-toggle="modal" data-whatever="@mdo">Give this place a review</a></li>
-              <%= render 'update_modal', place: @place %>
             </ul>
           </div>
         <% end %>
+          <a href="#reviewModal" data-toggle="modal" data-whatever="@mdo"><button class="list-group-item d-flex flex-inline list-group-item-green" style="color: white;">Give this place a review</button></a>
+          <%= render 'update_modal', place: @place %>
       </div>
     </div>
 
