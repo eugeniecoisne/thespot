@@ -17,7 +17,7 @@
         <div class="carousel-item">
           <%= cl_image_tag @place.photos[2].key, alt: "Third slide", class: "d-block w-100", height: 1000, crop: :fill %>
         </div>
-        <% if @place.user = current_user %>
+        <% if policy(@place).edit? %>
           <a href="#titleModal" data-toggle="modal" data-whatever="@mdo" class="text-center"><i class="far fa-images"></i></a>
           <%= render 'update_modal', place: @place %>
         <% end %>
@@ -32,7 +32,7 @@
     </a>
   </div>
 <% else %>
-  <% if @place.user == current_user %>
+  <% if policy(@place).edit? %>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" id="carousel-inner-no-photo">
           <div class="carousel-item active d-flex justify-content-center">
@@ -63,7 +63,7 @@
   <div class="row">
     <div class="col-12">
       <div class="card show-card text-center">
-        <% if @place.user == current_user %>
+        <% if policy(@place).edit? %>
           <h1 class="show-card-title"><%= @place.title %>
             <a href="#titleModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt" style="font-size: 20px"></i></a>
           </h1>
@@ -73,7 +73,7 @@
         <% end %>
 
 
-        <% if @place.user == current_user %>
+        <% if policy(@place).edit? %>
           <p class="show-address"><%= @place.address %>
             <a href="#addressModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
           </p>
@@ -101,7 +101,7 @@
         <!-- description -->
 
         <h3 class="show-card-title">More informations about the place...</h3>
-        <% if @place.user == current_user %>
+        <% if policy(@place).edit? %>
           <p class="show-card-text"><%= @place.description %>
             <a href="#descriptionModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
           </p>
@@ -174,7 +174,7 @@
             <span><%= @place.price %></span>
           </div>
 
-          <% if @place.user == current_user %>
+          <% if policy(@place).edit? %>
             <a href="#capacityPriceModal" data-toggle="modal" data-whatever="@mdo"><i id= "white-pencil" class="fas fa-pencil-alt"></i></a>
           <% end %>
 
@@ -194,7 +194,7 @@
             <% end %>
           </div>
           <div class="user-card-name">
-            <%= link_to @place.user.first_name, public_user_path(@place.user) %>
+            <%= link_to @place.user.first_name, user_public_path(@place.user) %>
           </div>
         </div>
       </div>
