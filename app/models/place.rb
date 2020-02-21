@@ -24,13 +24,14 @@ class Place < ApplicationRecord
       against: [ :category ]
 
   def average_rating
-    all_ratings = []
-    place_reviews.each do |place_review|
-    all_ratings << place_review.rating
+    ratings = []
+    average = 0
+    if place_reviews.present?
+      place_reviews.each { |place_review| ratings << place_review.rating }
+      average = ratings.sum.fdiv(place_reviews.count).round(1).to_i
+    else
+      average = "-"
     end
-    sum = all_ratings.sum
-    number_of_ratings = all_ratings.length
-    return sum.fdiv(number_of_ratings).round(1).to_i
   end
 
 end
