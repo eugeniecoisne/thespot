@@ -1,6 +1,6 @@
 <%= simple_form_for(place) do |f| %>
   <%= f.input :title, label: false, placeholder: "title" %>
-  <%= f.input :description, label: false, placeholder: "description"  %>
+  <%= f.input :description, label: false, placeholder: "description", :input_html => {:rows => 4} %>
   <%= f.input :category, collection: Place::CATEGORIES, label: false, prompt: "category" %>
   <%= f.input :address, id: 'place_address', label: false, placeholder: "address" %>
   <%= f.input :capacity, label: false, placeholder: "capacity" %>
