@@ -40,7 +40,7 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 // DO NOT TOUCH - LIVECHAT CODE
-const batch = 'the-spot';
+const batch = 'the-spot-350';
 const baseUrl = `https://wagon-chat.herokuapp.com/${batch}/messages`;
 
 const clearMessages = () => {

@@ -5,7 +5,7 @@ class UserReviewsController < ApplicationController
     authorize @user_review
     @user_review.user = @user
     if @user_review.save
-      redirect_to public_user_path(@user)
+      redirect_to user_public_path(@user)
     else
       render 'users/public'
     end
