@@ -58,156 +58,184 @@
 <% end %>
 
 <!-- TITLE & ADDRESS & AVERAGE RATING -->
-
-<div class="container mt-3">
+<div class="container">
   <div class="row">
-    <div class="col-12">
-      <div class="card show-card text-center">
-        <% if @place.user == current_user %>
-          <h1 class="show-card-title"><%= @place.title %>
-            <a href="#titleModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt" style="font-size: 20px"></i></a>
-          </h1>
-          <%= render 'update_modal', place: @place %>
-        <% else %>
-          <h1 class="show-card-title"><%= @place.title %></h1>
-        <% end %>
-
-
-        <% if @place.user == current_user %>
-          <p class="show-address"><%= @place.address %>
-            <a href="#addressModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
-          </p>
-          <%= render 'update_modal', place: @place %>
-        <% else %>
-          <p class="show-address"><%= @place.address %></p>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- DESCRIPTION & MAP & REVIEWS -->
-
-    <div class="col-8">
-      <div class="card show-card">
-        <h3 class="show-card-title">More informations about the place...</h3>
-        <% if @place.user == current_user %>
-          <p class="show-card-text"><%= @place.description %>
-            <a href="#descriptionModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
-          </p>
-          <%= render 'update_modal', place: @place %>
-        <% else %>
-          <p class="show-card-text"><%= @place.description %></p>
-        <% end %>
-        <div id="map"
-              style="width: 100%;
-             height: 350px;"
-             data-markers="<%= @markers.to_json %>"
-             data-mapbox-api-key="pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg">
-        </div>
-      </div>
-    </div>
-
-    <!-- BOOKING CARD -->
-
-    <div class="col-4">
-      <% if @place.user != current_user %>
-        <div class="card show-card place-booking-card">
-          <h3 class="show-card-title">Book this place !</h3>
-          <div class="form-and-submit">
-            <%= simple_form_for([@place, @booking]) do |f| %>
-              <%= f.input :date, as: :string, placeholder: 'Choose a date', label: false, input_html: { class: "datepicker" } %>
-              <%= f.submit 'Book', class: 'btn btn-light w-100' %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-
-      <!-- DETAILS CARD -->
-
-      <div class="card show-card place-details-card">
-        <div class="details">
-
-          <div class="details-capacity">
-            <i class="fas fa-users pr-2"></i>
-            <span><%= @place.capacity %></span>
-          </div>
-          <div class="details-price">
-            <i class="fas fa-euro-sign pr-2"></i>
-            <span><%= @place.price %></span>
-          </div>
-
-          <% if @place.user == current_user %>
-            <a href="#capacityPriceModal" data-toggle="modal" data-whatever="@mdo"><i id= "white-pencil" class="fas fa-pencil-alt"></i></a>
+    <div class="container mt-3">
+      <div class="col-12">
+        <div class="card show-card text-center">
+          <% if @place.user == current_user %>-
+            <h1 class="show-card-title"><%= @place.title %>
+              <a href="#titleModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt" style="font-size: 20px"></i></a>
+            </h1>
+            <%= render 'update_modal', place: @place %>
+          <% else %>
+            <h1 class="show-card-title"><%= @place.title %></h1>
           <% end %>
 
+
+          <% if @place.user == current_user %>
+            <p class="show-address"><%= @place.address %>
+              <a href="#addressModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
+            </p>
+            <%= render 'update_modal', place: @place %>
+          <% else %>
+            <p class="show-address"><%= @place.address %></p>
+          <% end %>
+          <h2 class="rating"> <strong>Rating: <% @place.average_rating.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <%  (5 - @place.average_rating).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+          </strong></h2>
         </div>
       </div>
 
-      <!-- OWNER INFORMATION -->
-
-      <div class="card show-card place-user-card">
-        <h6 class="show-card-title no-mb">Owner information</h6>
-        <div class="place-user-information">
-          <div class="user-card-avatar mr-3">
-            <% if @place.user.photo.attached? %>
-              <%= cl_image_tag @place.user.photo.key, alt: "user-picture" %>
+      <!-- DESCRIPTION & MAP & REVIEWS -->
+      <div class="container mt-3 d-flex justify-content-between">
+        <div class="col-8">
+          <div class="card show-card">
+            <h3 class="show-card-title">More informations about the place...</h3>
+            <% if @place.user == current_user %>
+              <p class="show-card-text"><%= @place.description %>
+                <a href="#descriptionModal" data-toggle="modal" data-whatever="@mdo"><i class="fas fa-pencil-alt"></i></a>
+              </p>
+              <%= render 'update_modal', place: @place %>
             <% else %>
-              <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", alt: "user-picture" %>
+              <p class="show-card-text"><%= @place.description %></p>
             <% end %>
+            <div id="map"
+                  style="width: 100%;
+                 height: 350px;"
+                 data-markers="<%= @markers.to_json %>"
+                 data-mapbox-api-key="pk.eyJ1IjoidGhvbWFzLXJvc2U3NiIsImEiOiJjazYyOGRieWgwYWlyM2Zxd29rZ2hiOGJsIn0.uq_GyWQAqSz7DsRV2rLLTg">
+            </div>
+            <!--  <div class="row justify-content-center"> -->
           </div>
-          <div class="user-card-name">
-            <%= link_to @place.user.first_name, public_user_path(@place.user) %>
+          <div class="card show-card">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="show-card-title">Give this place a review</h3>
+                  <%= simple_form_for([@place, @place_review]) do |f| %>
+                  <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
+                  <%= f.input :content %>
+                  <%= f.submit class: 'btn btn-orange' %>
+                  <% end %>
+              </div>
+            </div>
+<!--             <div class="card show-card"> -->
+              <!-- <div class="col-8"> -->
+                <!-- <div class="card show-card"> -->
+                  <h3 class="show-card-title mt-3 pt-2">Reviews about this place...</h3>
+                  <div class="show-card-text">
+                    <% @place.place_reviews.each do |place_review| %>
+                      <p><%= place_review.user.first_name %></p>
+                      <p><%= place_review.content %></p>
+                    <% end %>
+                  </div>
+                <!-- </div> -->
+              <!-- </div> -->
+<!--             </div> -->
+          </div>
+        </div>
+
+          <!-- BOOKING CARD -->
+
+          <div class="col-4">
+            <% if @place.user != current_user %>
+              <div class="card show-card place-booking-card">
+                <h3 class="show-card-title">Book this place !</h3>
+                <div class="form-and-submit">
+                  <%= simple_form_for([@place, @booking]) do |f| %>
+                    <%= f.input :date, as: :string, placeholder: 'Choose a date', label: false, input_html: { class: "datepicker" } %>
+                    <%= f.submit 'Book', class: 'btn btn-light w-100' %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- DETAILS CARD -->
+
+            <div class="card show-card place-details-card">
+              <div class="details">
+
+                <div class="details-capacity">
+                  <i class="fas fa-users pr-2"></i>
+                  <span><%= @place.capacity %></span>
+                </div>
+                <div class="details-price">
+                  <i class="fas fa-euro-sign pr-2"></i>
+                  <span><%= @place.price %></span>
+                </div>
+
+                <% if @place.user == current_user %>
+                  <a href="#capacityPriceModal" data-toggle="modal" data-whatever="@mdo"><i id= "white-pencil" class="fas fa-pencil-alt"></i></a>
+                <% end %>
+
+              </div>
+            </div>
+
+            <!-- OWNER INFORMATION -->
+
+            <div class="card show-card place-user-card">
+              <h6 class="show-card-title no-mb">Owner information</h6>
+              <div class="place-user-information">
+                <div class="user-card-avatar mr-3">
+                  <% if @place.user.photo.attached? %>
+                    <%= cl_image_tag @place.user.photo.key, alt: "user-picture" %>
+                  <% else %>
+                    <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", alt: "user-picture" %>
+                  <% end %>
+                </div>
+                <div class="user-card-name">
+                  <%= link_to @place.user.first_name, public_user_path(@place.user) %>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHAT MESSAGES -->
+
+            <% if user_signed_in? %>
+            <button id="chat-button" class="btn-green py-2 px-3 mb-4 rounded">Start a conversation</button>
+            <% end %>
+            <div id="chatroom" class="rounded chatroom-hidden">
+
+              <h5>Your conversation with <%= @place.user.first_name %> :</h5>
+
+              <div id="messages">
+
+                <ul class="list-unstyled chat-messages">
+                </ul>
+              </div>
+              <form action="#" id="comment-form" class="border-top">
+                <div class="form-group">
+                  <label for="your-message">Your message</label>
+                  <textarea type="text" name="content" id="your-message" class="form-control" placeholder="Your message"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="your-name">From</label>
+                  <input type="text" name="content" id="your-name" class="form-control" placeholder="Your name">
+                </div>
+                <input type="submit" value="Send" class="btn btn-green rounded">
+              </form>
+            </div>
+
+            <!-- SHARING -->
+
+            <div class="card show-card place-share-card">
+              <div class="flex-align">
+                <h6 class="show-card-title no-mb">Share this place</h6>
+                <div class="flex">
+                  <i class="fab fa-facebook-square"></i>
+                  <i class="fab fa-twitter-square"></i>
+                  <i class="fab fa-pinterest-square"></i>
+                  <i class="fas fa-envelope-square"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- CHAT MESSAGES -->
-
-      <% if user_signed_in? %>
-      <button id="chat-button" class="btn-green py-2 px-3 mb-4 rounded">Start a conversation</button>
-      <% end %>
-      <div id="chatroom" class="rounded chatroom-hidden">
-
-        <h5>Your conversation with <%= @place.user.first_name %> :</h5>
-
-        <div id="messages">
-          <ul class="list-unstyled chat-messages">
-          </ul>
-        </div>
-        <form action="#" id="comment-form" class="border-top">
-          <div class="form-group">
-            <label for="your-message">Your message</label>
-            <textarea type="text" name="content" id="your-message" class="form-control" placeholder="Your message"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="your-name">From</label>
-            <input type="text" name="content" id="your-name" class="form-control" placeholder="Your name">
-          </div>
-          <input type="submit" value="Send" class="btn btn-green rounded">
-        </form>
-      </div>
-
-      <!-- SHARING -->
-
-      <div class="card show-card place-share-card">
-        <div class="flex-align">
-          <h6 class="show-card-title no-mb">Share this place</h6>
-          <div class="flex">
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-twitter-square"></i>
-            <i class="fab fa-pinterest-square"></i>
-            <i class="fas fa-envelope-square"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-10 mb-4">
-      <%= simple_form_for([@place, @place_review]) do |f| %>
-        <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: 'px-2' %>
-        <%= f.input :content %>
-        <%= f.submit %>
-      <% end %>
     </div>
   </div>
 </div>
