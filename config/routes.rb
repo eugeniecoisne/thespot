@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     resources :bookings, only: :index
-    member do
-      get :public
-    end
+    get :public
     resources :user_reviews, only: :create
   end
 

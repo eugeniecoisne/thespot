@@ -30,6 +30,8 @@
                   <%= link_to 'delete', booking_path(booking), method: :delete, date: { confirm: 'Are you sure?' }, class: "btn btn-orange" %>
                 <% else %>
                   <%= link_to 'show', place_path(booking.place), class: "btn btn-green" %>
+                  <%= link_to 'rate the owner', user_public_path(booking.place.user), class: "btn btn-orange" %>
+                  <%= link_to 'rate the place', place_path(booking.place), class: "btn btn-orange" %>
                 <% end %>
               </div>
             </div>

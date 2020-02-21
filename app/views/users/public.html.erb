@@ -13,8 +13,8 @@
 
         <div class="card-header card-owner-header">
           <div class="user-card-avatar" >
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, height: 150, width: 150, crop: :fill%>
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, height: 150, width: 150, crop: :fill%>
             <% else %>
               <%= image_tag "https://i48.servimg.com/u/f48/16/78/05/90/myster10.png", class: "avatar dropdown-toggle avatar_user_navbar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
@@ -71,40 +71,44 @@
 
       <!-- OWNER'S PLACES -->
 
-      <h4 class="public-owner-listing mt-4">My places</h4>
-      <div class="my-dashboard-cards my-places-cards">
-        <% @current_user.places.each do |place| %>
-          <div class="my-dashboard-card align-items-end">
-            <div class="my-dashboard-card-place">
-              <% if place.photos.attached? %>
-                <%= cl_image_tag place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
-              <% else %>
-                <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
-              <% end %>
-              <div class="my-dashboard-card-infos">
-                <h2><%= link_to place.title, place_path(place)%></h2>
-                <h3><%= place.address.split(",")[-3] %></h3>
+      <% if @user.places.present? %>
+        <h4 class="public-owner-listing mt-4">My places</h4>
+        <div class="my-dashboard-cards my-places-cards">
+          <% @user.places.each do |place| %>
+            <div class="my-dashboard-card align-items-end">
+              <div class="my-dashboard-card-place">
+                <% if place.photos.attached? %>
+                  <%= cl_image_tag place.photos.sample.key, height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% else %>
+                  <%= image_tag "monkey.jpg", height: 120, width: 120, crop: :fill, alt: "place-pic" %>
+                <% end %>
+                <div class="my-dashboard-card-infos">
+                  <h2><%= link_to place.title, place_path(place)%></h2>
+                  <h3><%= place.address.split(",")[-3] %></h3>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
 
       <!-- OWNER'S REVIEWS -->
 
-      <h4 class="public-owner-listing mt-4">My reviews</h4>
-      <div class="my-reviews-owner-cards">
-        <% @user.user_reviews.sort_by { |review| review.created_at }.reverse.each do |review| %>
-          <div class="my-dashboard-card align-items-end">
-            <div class="card-body d-flex">
-              <div class="rating-in-card-review-public">
-                <h5 class="card-text pr-3"><i class="fas fa-star"></i> <%= review.rating %> <span style="font-size: 11px;">/5</span></h5>
+      <% if @user.user_reviews.present? %>
+        <h4 class="public-owner-listing mt-4">My reviews</h4>
+        <div class="my-reviews-owner-cards">
+          <% @user.user_reviews.sort_by { |review| review.created_at }.reverse.each do |review| %>
+            <div class="my-dashboard-card align-items-end">
+              <div class="card-body d-flex">
+                <div class="rating-in-card-review-public">
+                  <h5 class="card-text pr-3"><i class="fas fa-star"></i> <%= review.rating %> <span style="font-size: 11px;">/5</span></h5>
+                </div>
+                <h5 class="card-text pl-3 border-left"><em>"<%= review.content %>"</em></h5>
               </div>
-              <h5 class="card-text pl-3 border-left"><em>"<%= review.content %>"</em></h5>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
