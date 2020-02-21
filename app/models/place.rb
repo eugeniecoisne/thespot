@@ -22,4 +22,15 @@ class Place < ApplicationRecord
       }
   pg_search_scope :search_category,
       against: [ :category ]
+
+  def average_rating
+    all_ratings = []
+    place_reviews.each do |place_review|
+    all_ratings << place_review.rating
+    end
+    sum = all_ratings.sum
+    number_of_ratings = all_ratings.length
+    return sum.fdiv(number_of_ratings).round(1).to_i
+  end
+
 end
